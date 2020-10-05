@@ -1,7 +1,7 @@
-import React from "react";
-import { Typography } from "antd";
+import React from 'react';
+import { Typography } from 'antd';
 
-import SubComponent1 from "./components/SubComponent1";
+import SubComponent1 from './components/SubComponent1';
 
 const { Title } = Typography;
 

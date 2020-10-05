@@ -1,7 +1,7 @@
-import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Example from "./pages/example/Example";
-import Example2 from "./pages/example2/Example2";
+import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Example from './pages/example/Example';
+import Example2 from './pages/example2/Example2';
 
 export default function Routes() {
   // add more routes here
