@@ -2,6 +2,18 @@
 - to manage routing, edit `src/app/app-routing.module.ts`
 - to crate new component (or page), `ng generate component <name>`
 
+## Ant design
+see https://ng.ant.design/components/ for docs
+
+when docs tells you to add import like
+
+```js
+import { NzButtonModule } from 'ng-zorro-antd/button';
+```
+
+add it to `src/app/antd.module.ts`
+
+
 # NullTermprojectFrontend
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.6.

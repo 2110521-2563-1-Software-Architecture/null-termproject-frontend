@@ -14,6 +14,7 @@ import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
+import { AntdModule } from "./antd.module";
 
 registerLocaleData(en);
 
@@ -26,6 +27,7 @@ registerLocaleData(en);
     NotFoundComponent
   ],
   imports: [
+    AntdModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,

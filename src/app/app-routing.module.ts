@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 // add more routes here
+// for relative route see docs: https://angular.io/guide/router
 const routes: Routes = [
   {
     path: 'example1',
