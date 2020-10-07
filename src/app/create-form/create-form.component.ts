@@ -23,8 +23,6 @@ validateForm!: FormGroup;
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
-      // userName: [null, [Validators.required]],
-      // password: [null, [Validators.required]],
       title: [null, [Validators.required]],
       oldurl: [null, [Validators.required]],
       newurl: [null, [Validators.required]],

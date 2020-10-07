@@ -4,12 +4,17 @@
     margin-top: -4px;
 }
 .dashboardLeft{
-    background-color: #FBFBFB;
+    // background-color: #FBFBFB;
+    background-color: white;
     height: inherit;
-    padding: 10px;
+    // padding: 10px;
+    padding: 30px;
+    border-right :solid #F0F0F0 2px;
+    // border-right: 3px;
 }
 .dashboardRight{
-    background-color: white;
+    // background-color: white;
+    background-color: #FBFBFB;
     height: inherit;
 }
 .class{
