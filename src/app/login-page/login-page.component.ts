@@ -10,6 +10,8 @@ export class LoginPageComponent implements OnInit {
   validateForm!: FormGroup;
 
   submitForm(): void {
+    console.log(this.validateForm.controls.userName.value);
+    console.log(this.validateForm.controls.password.value);
     for (const i in this.validateForm.controls) {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
