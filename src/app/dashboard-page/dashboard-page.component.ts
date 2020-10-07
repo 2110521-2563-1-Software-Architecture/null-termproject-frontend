@@ -7,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardPageComponent implements OnInit {
 
+  showCreateForm():void{
+    console.log('show form');
+  }
   constructor() { }
+
 
   ngOnInit(): void {
   }

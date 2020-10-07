@@ -1,7 +1,9 @@
 <!-- <p>dashboard-page works!</p> -->
 <div nz-row [className]="'dashboardContainer'">
     <div nz-col nzSpan="8" [className]="'dashboardLeft'">
-        <button nz-button nzType="primary" nzBlock>CREATE A NEW LINK</button>
+        <button nz-button nzType="primary" nzBlock (click)="showCreateForm()">CREATE A NEW LINK</button>
     </div>
-    <div nz-col nzSpan="16" [className]="'dashboardRight'"></div>
+    <div nz-col nzSpan="16" [className]="'dashboardRight'">
+        <app-create-form></app-create-form>
+    </div>
 </div>

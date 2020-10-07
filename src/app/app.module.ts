@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
+import { CreateFormComponent } from './create-form/create-form.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -48,6 +49,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(
     LoginPageComponent,
     RegisterPageComponent,
     DashboardPageComponent,
+    CreateFormComponent
   ],
   imports: [
     AntdModule,
