@@ -7,6 +7,9 @@ import { ExamplePage1Component } from './example-page1/example-page1.component';
 import { ExamplePage2Component } from './example-page2/example-page2.component';
 import { NavbarComponent } from './navbar/navbar.component'
 import { HomeComponent } from './home/home.component';
+import { LoginPageComponent } from './login-page/login-page.component';
+import { RegisterPageComponent } from './register-page/register-page.component';
+import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -26,7 +29,10 @@ registerLocaleData(en);
     ExamplePage2Component,
     HomeComponent,
     NotFoundComponent,
-    NavbarComponent
+    NavbarComponent,
+    LoginPageComponent,
+    RegisterPageComponent,
+    DashboardPageComponent
   ],
   imports: [
     AntdModule,
