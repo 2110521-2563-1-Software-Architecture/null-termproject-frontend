@@ -3,12 +3,12 @@ import { NgModule } from "@angular/core";
 
 // add more antd modules below
 import { NzButtonModule } from 'ng-zorro-antd/button';
-
-
+import { NzMenuModule } from 'ng-zorro-antd/menu';
 
 @NgModule({
   exports: [
     NzButtonModule,
+    NzMenuModule
   ]
 })
 export class AntdModule {}

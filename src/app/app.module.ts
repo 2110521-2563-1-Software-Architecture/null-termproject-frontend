@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ExamplePage1Component } from './example-page1/example-page1.component';
 import { ExamplePage2Component } from './example-page2/example-page2.component';
+import { NavbarComponent } from './navbar/navbar.component'
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { FormsModule } from '@angular/forms';
@@ -24,7 +25,8 @@ registerLocaleData(en);
     ExamplePage1Component,
     ExamplePage2Component,
     HomeComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    NavbarComponent
   ],
   imports: [
     AntdModule,
