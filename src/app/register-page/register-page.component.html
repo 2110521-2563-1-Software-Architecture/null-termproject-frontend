@@ -42,8 +42,7 @@
           [nzSm]="14"
           [nzXs]="24"
           [nzValidateStatus]="validateForm.controls['phoneNumber']"
-          nzErrorTip="Please input your phone number!"
-        >
+          nzErrorTip="Please input your phone number!">
           <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
             <ng-template #addOnBeforeTemplate>
               <nz-select formControlName="phoneNumberPrefix" class="phone-select">
@@ -53,30 +52,6 @@
             </ng-template>
             <input formControlName="phoneNumber" id="'phoneNumber'" nz-input />
           </nz-input-group>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="website" nzRequired>Website</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input website!">
-          <input nz-input id="website" formControlName="website" placeholder="website" />
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="captcha" nzRequired>Captcha</nz-form-label>
-        <nz-form-control
-          [nzSm]="14"
-          [nzXs]="24"
-          nzErrorTip="Please input the captcha you got!"
-          nzExtra="We must make sure that your are a human."
-        >
-          <div nz-row [nzGutter]="8">
-            <div nz-col [nzSpan]="12">
-              <input nz-input formControlName="captcha" id="captcha" />
-            </div>
-            <div nz-col [nzSpan]="12">
-              <button nz-button (click)="getCaptcha($event)">Get captcha</button>
-            </div>
-          </div>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item nz-row class="register-area">
