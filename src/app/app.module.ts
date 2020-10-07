@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ExamplePage1Component } from './example-page1/example-page1.component';
@@ -11,6 +10,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
 import { CreateFormComponent } from './create-form/create-form.component';
+import { LinkListComponent } from './link-list/link-list.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -49,7 +49,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(
     LoginPageComponent,
     RegisterPageComponent,
     DashboardPageComponent,
-    CreateFormComponent
+    CreateFormComponent,
+    LinkListComponent
   ],
   imports: [
     AntdModule,
