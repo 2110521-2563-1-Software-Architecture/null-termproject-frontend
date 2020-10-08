@@ -32,10 +32,6 @@ export class RegisterPageComponent implements OnInit {
     return {};
   };
 
-  getCaptcha(e: MouseEvent): void {
-    e.preventDefault();
-  }
-
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
@@ -46,8 +42,6 @@ export class RegisterPageComponent implements OnInit {
       nickname: [null, [Validators.required]],
       phoneNumberPrefix: ['+86'],
       phoneNumber: [null, [Validators.required]],
-      website: [null, [Validators.required]],
-      captcha: [null, [Validators.required]],
       agree: [false],
     });
   }
