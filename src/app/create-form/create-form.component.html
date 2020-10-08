@@ -1,0 +1,26 @@
+<h1>CREATE A NEW LINK</h1>
+
+<form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+    <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your title!">
+            <nz-input-group>
+            <input type="text" nz-input formControlName="title" placeholder="Title" />
+            </nz-input-group>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your Old URL!">
+            <nz-input-group >
+            <input type="text" nz-input formControlName="oldurl" placeholder="Old URL" />
+            </nz-input-group>
+        </nz-form-control>
+    </nz-form-item>
+        <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your New URL!">
+            <nz-input-group >
+            <input type="text" nz-input formControlName="newurl" placeholder="New URL (smallurl/______)" />
+            </nz-input-group>
+        </nz-form-control>
+    </nz-form-item>
+    <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">CREATE !</button>
+</form>

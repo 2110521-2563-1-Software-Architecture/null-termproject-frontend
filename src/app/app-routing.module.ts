@@ -7,6 +7,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
+import { CreateFormComponent } from './create-form/create-form.component';
+import { LinkListComponent } from './link-list/link-list.component'
 
 // add more routes here
 // for relative route see docs: https://angular.io/guide/router
@@ -30,6 +32,10 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardPageComponent,
+  },
+  {
+    path:'create-form',
+    component: CreateFormComponent,
   },
    {
     path: '',
