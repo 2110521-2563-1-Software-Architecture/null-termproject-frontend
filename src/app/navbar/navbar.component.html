@@ -1,7 +1,9 @@
 
 <ul nz-menu nzMode="horizontal">
     <li nz-menu-item><a routerLink="/register"> Register</a></li>
-    <li nz-menu-item><a routerLink="/login"> Login</a></li>
-    <li nz-menu-item><a routerLink="/dashboard"> Dashboard </a></li>
+    <li nz-menu-item *ngIf="currentUser == null"><a routerLink="/login"> Login</a></li>
+    <li nz-menu-item *ngIf="currentUser != null"><a routerLink="/dashboard"> Dashboard </a></li>
+    
+    <li nz-menu-item> Hello, {{ currentUser || 'Guest'}} !</li>
     <!-- <li nz-menu-item><a routerLink="/some-page"> Not Found </a></li> -->
 </ul>

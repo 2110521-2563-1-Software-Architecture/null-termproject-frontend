@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthenticationService } from '../authentication.service';
 
 @Component({
@@ -13,6 +14,7 @@ export class RegisterPageComponent implements OnInit {
   constructor(
     private authService: AuthenticationService,
     private fb: FormBuilder,
+    private router: Router,
   ) {}
 
   submitForm(): void {
@@ -39,7 +41,7 @@ export class RegisterPageComponent implements OnInit {
       username, password,
     })
     .then(_ => {
-      window.location.href = '/login';
+      this.router.navigate(['dashboard']);
     })
     .catch(err => {
       alert("Error Register");

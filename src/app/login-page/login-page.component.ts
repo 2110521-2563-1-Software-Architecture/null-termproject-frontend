@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule  } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthenticationService } from '../authentication.service';
 
 @Component({
@@ -13,6 +14,7 @@ export class LoginPageComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthenticationService,
+    private router: Router,
   ) {}
 
   submitForm(): void {
@@ -38,7 +40,9 @@ export class LoginPageComponent implements OnInit {
 
     this.authService.currentUser.subscribe({
       next: val => {
-        window.location.href = '/dashboard';
+        if (val.username != null) {
+          this.router.navigate(['dashboard'])
+        }
       },
       error: err => {
         alert("Error logging in");

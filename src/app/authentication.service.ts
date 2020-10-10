@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 
 
 // current login info
 interface UserInfo {
-  username: string;
+  username?: string;
 }
 
 // username/pass
@@ -52,13 +52,13 @@ const decodeJWT = (jwt: string): any => {
   providedIn: 'root'
 })
 export class AuthenticationService {
-  public currentUser: Subject<UserInfo>;
+  public currentUser: BehaviorSubject<UserInfo>;
   private token: string; // JWT
 
   constructor(
     private httpClient: HttpClient,
   ) {
-    this.currentUser = new Subject<UserInfo>();
+    this.currentUser = new BehaviorSubject<UserInfo>({});
   }
 
 
@@ -66,7 +66,8 @@ export class AuthenticationService {
     this.httpClient.post(`${API_URL}/${BASE_URL}/authentication`, credentials)
     .toPromise().then((res: LoginResponseT) => {
       const jwt: JWTPayload = decodeJWT(res.token);
-      
+      this.token = res.token;
+
       this.token = res.token; // save token
       this.currentUser.next({
         username: jwt.username,
