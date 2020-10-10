@@ -53,6 +53,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(
     LinkListComponent
   ],
   imports: [
+    HttpClientModule,
     AntdModule,
     BrowserModule,
     AppRoutingModule,

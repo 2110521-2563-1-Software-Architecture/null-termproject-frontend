@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule  } from '@angular/forms';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-login-page',
@@ -8,6 +9,11 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule  } from '@angul
 })
 export class LoginPageComponent implements OnInit {
   validateForm!: FormGroup;
+  
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthenticationService,
+  ) {}
 
   submitForm(): void {
     console.log(this.validateForm.controls.userName.value);
@@ -17,9 +23,11 @@ export class LoginPageComponent implements OnInit {
       this.validateForm.controls[i].updateValueAndValidity();
       console.log(this.validateForm.controls[i]);
     }
+
+    const {userName: username, password} = this.validateForm.value;
+    this.authService.login({username, password});
   }
 
-  constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
@@ -27,5 +35,15 @@ export class LoginPageComponent implements OnInit {
       password: [null, [Validators.required]],
       remember: [true]
     });
+
+    this.authService.currentUser.subscribe({
+      next: val => {
+        window.location.href = '/dashboard';
+      },
+      error: err => {
+        alert("Error logging in");
+        console.error(err);
+      }
+    })
   }
 }

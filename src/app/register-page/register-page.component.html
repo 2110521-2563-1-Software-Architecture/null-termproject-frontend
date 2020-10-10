@@ -1,8 +1,14 @@
-<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
-      <nz-form-item>
+<form nz-form [formGroup]="formGroup" (ngSubmit)="submitForm()">
+      <!-- <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">E-mail</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
           <input nz-input formControlName="email" id="email" />
+        </nz-form-control>
+      </nz-form-item> -->
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="username"> Username </nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid username!">
+          <input nz-input formControlName="username" id="username" />
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
@@ -25,7 +31,7 @@
           </ng-template>
         </nz-form-control>
       </nz-form-item>
-      <nz-form-item>
+      <!-- <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="nickname" nzRequired>
           <span>
             Nickname
@@ -35,8 +41,8 @@
         <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your nickname!">
           <input nz-input id="nickname" formControlName="nickname" />
         </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
+      </nz-form-item> -->
+      <!-- <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="phoneNumber" nzRequired>Phone Number</nz-form-label>
         <nz-form-control
           [nzSm]="14"
@@ -53,7 +59,7 @@
             <input formControlName="phoneNumber" id="'phoneNumber'" nz-input />
           </nz-input-group>
         </nz-form-control>
-      </nz-form-item>
+      </nz-form-item> -->
       <nz-form-item nz-row class="register-area">
         <nz-form-control [nzSpan]="14" [nzOffset]="6">
           <label nz-checkbox formControlName="agree">

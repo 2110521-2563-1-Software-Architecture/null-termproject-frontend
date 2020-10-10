@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-register-page',
@@ -7,41 +8,71 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./register-page.component.scss'],
 })
 export class RegisterPageComponent implements OnInit {
-  validateForm!: FormGroup;
+  formGroup!: FormGroup;
+
+  constructor(
+    private authService: AuthenticationService,
+    private fb: FormBuilder,
+  ) {}
 
   submitForm(): void {
-    for (const i in this.validateForm.controls) {
-      this.validateForm.controls[i].markAsDirty();
-      this.validateForm.controls[i].updateValueAndValidity();
+    // check error
+    for (const field in this.formGroup.controls) {
+      this.formGroup.controls[field].markAsDirty();
+      this.formGroup.controls[field].updateValueAndValidity();
     }
+    
+    if (!this.formGroup.value.agree) {
+      alert("Please accept agreement");
+      return;
+    }
+
+    // stop if has error
+    for (const field in this.formGroup.controls) {
+      if (this.formGroup.controls[field].errors != null) {
+        return;
+      }
+    }
+
+    const { username, password } = this.formGroup.value;
+    this.authService.register({
+      username, password,
+    })
+    .then(_ => {
+      window.location.href = '/login';
+    })
+    .catch(err => {
+      alert("Error Register");
+      console.error(err);
+    })
   }
 
   updateConfirmValidator(): void {
     /** wait for refresh value */
     Promise.resolve().then(() =>
-      this.validateForm.controls.checkPassword.updateValueAndValidity()
+      this.formGroup.controls.checkPassword.updateValueAndValidity()
     );
   }
 
   confirmationValidator = (control: FormControl): { [s: string]: boolean } => {
     if (!control.value) {
       return { required: true };
-    } else if (control.value !== this.validateForm.controls.password.value) {
+    } else if (control.value !== this.formGroup.controls.password.value) {
       return { confirm: true, error: true };
     }
     return {};
   };
 
-  constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
-    this.validateForm = this.fb.group({
-      email: [null, [Validators.email, Validators.required]],
+    this.formGroup = this.fb.group({
+      // email: [null, [Validators.email, Validators.required]],
+      username: [null, [Validators.required]],
       password: [null, [Validators.required]],
       checkPassword: [null, [Validators.required, this.confirmationValidator]],
-      nickname: [null, [Validators.required]],
-      phoneNumberPrefix: ['+86'],
-      phoneNumber: [null, [Validators.required]],
+      // nickname: [null, [Validators.required]],
+      // phoneNumberPrefix: ['+86'],
+      // phoneNumber: [null, [Validators.required]],
       agree: [false],
     });
   }
