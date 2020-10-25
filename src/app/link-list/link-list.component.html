@@ -1,11 +1,7 @@
-<div div nz-col nzSpan="24" [className]="'itemBox'"> 
-    <h2>Title</h2>
-    <p [className]="'greyTxt'">Old URL</p>
-    <p [className]="'blueTxt'">New URL</p>
+<div *ngFor="let url of myUrls" div nz-col nzSpan="24" [className]="'itemBox'"> 
+    <h3> {{ url.shortUrl }} </h3>
+    <p (click)="onLinkClick(url.shortUrl)" class="hover-link"> Edit this </p>
+    <p [className]="'greyTxt'"> RealUrl: {{url.realUrl}}</p>
+    <p [className]="'blueTxt'"> NewUrl: {{API_URL}}/link/{{url.shortUrl}}</p>
 </div>
 
-<div div nz-col nzSpan="24" [className]="'itemBox'"> 
-    <h2>Title</h2>
-    <p [className]="'greyTxt'">Old URL</p>
-    <p [className]="'blueTxt'">New URL</p>
-</div>

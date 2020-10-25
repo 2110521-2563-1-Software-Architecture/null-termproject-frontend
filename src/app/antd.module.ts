@@ -137,6 +137,7 @@ import { NzPipesModule } from 'ng-zorro-antd/pipes';
     NzWaveModule,
     NzResizableModule,
     NzPipesModule,
+    NzTypographyModule,
   ],
 })
 export class AntdModule {}

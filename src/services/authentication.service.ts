@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-
+import { HttpClient } from "@angular/common/http";
+import { API_URL } from 'src/config';
 
 
 // current login info
 interface UserInfo {
   username?: string;
+  _id?: string;
 }
 
 // username/pass
@@ -29,9 +30,8 @@ interface JWTPayload {
   username: string;
 }
 
-const API_URL = 'http://localhost:3000';
-const BASE_URL = 'api/users'
 
+const BASE_URL = 'api/user'
 
 const decodeJWT = (jwt: string): any => {
   const [_header, payload, _sig] = jwt.split('.');
@@ -61,9 +61,13 @@ export class AuthenticationService {
     this.currentUser = new BehaviorSubject<UserInfo>({});
   }
 
+  async autoLogin() {
+    const user = (await this.httpClient.get(`${API_URL}/${BASE_URL}/me`, {withCredentials: true}).toPromise()) as any
+    this.currentUser.next({username: user.username, _id: user._id})
+  }
 
   async login(credentials: LoginCredentials) {
-    this.httpClient.post(`${API_URL}/${BASE_URL}/authentication`, credentials)
+    this.httpClient.post(`${API_URL}/${BASE_URL}/login`, credentials, {withCredentials: true})
     .toPromise().then((res: LoginResponseT) => {
       const jwt: JWTPayload = decodeJWT(res.token);
       this.token = res.token;
@@ -81,7 +85,7 @@ export class AuthenticationService {
   }
 
   async register(credentials: RegisterCredentials): Promise<void> {
-    return this.httpClient.post(`${API_URL}/${BASE_URL}`, credentials)
+    return this.httpClient.post(`${API_URL}/${BASE_URL}/create`, credentials, {withCredentials: true})
     .toPromise().then(res => {
       return;
     })
@@ -89,5 +93,17 @@ export class AuthenticationService {
       console.error("Error in register")
       throw err;
     });
+  }
+
+  async logout(): Promise<void> {
+    return this.httpClient.post(`${API_URL}/${BASE_URL}/logout`, {}, {withCredentials: true}).toPromise()
+    .then(res => {
+      console.log("logout");
+      this.currentUser.next({});
+    })
+    .catch(err => {
+      console.error("Error in logout")
+      throw err;
+    })
   }
 }

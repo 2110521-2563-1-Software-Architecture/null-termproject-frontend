@@ -1,13 +1,13 @@
-<h1>CREATE A NEW LINK</h1>
-
+<h1> {{ isEditMode ?  "Editing link " + id : "Create new link"  }}</h1>
+<button *ngIf="isEditMode" nz-button class="login-form-button login-form-margin" [nzType]="'primary'" (click)="onBackClick()"> Back to Create </button>
 <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
-    <nz-form-item>
+    <!-- <nz-form-item>
         <nz-form-control nzErrorTip="Please input your title!">
             <nz-input-group>
             <input type="text" nz-input formControlName="title" placeholder="Title" />
             </nz-input-group>
         </nz-form-control>
-    </nz-form-item>
+    </nz-form-item> -->
     <nz-form-item>
         <nz-form-control nzErrorTip="Please input your Old URL!">
             <nz-input-group >

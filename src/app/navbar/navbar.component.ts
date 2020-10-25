@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../authentication.service';
+import { AuthenticationService } from 'src/services/authentication.service';
 
 @Component({
   selector: 'app-navbar',
@@ -20,6 +20,10 @@ export class NavbarComponent implements OnInit {
         this.currentUser = val.username;
       }
     })
+  }
+
+  onLogout() {
+    this.authService.logout();
   }
 
 }

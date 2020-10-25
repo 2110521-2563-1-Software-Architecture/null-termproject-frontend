@@ -1,1 +1,10 @@
-<p>home works!</p>
+<h1> Please select an action </h1>
+<p>
+  <a nzType="primary" routerLink="/dashboard" *ngIf="currentUser != null"> go to dashboard </a>
+</p>
+<p>
+  <a nzType="primary" routerLink="/login" *ngIf="currentUser == null"> Login </a>
+</p>
+<p>
+  <a nzType="primary" routerLink="/register" *ngIf="currentUser == null"> Register </a>
+</p>

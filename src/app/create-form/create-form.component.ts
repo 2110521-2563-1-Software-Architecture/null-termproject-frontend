@@ -1,5 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ShorturlService } from "src/services/shorturl.service";
+
+const formHasError = (fg: FormGroup) => {
+  for (let key in fg.controls) {
+    const control = fg.controls[key];
+    if (control.errors != null) return true;
+  } 
+  return false;
+}
 
 @Component({
   selector: 'app-create-form',
@@ -7,26 +16,70 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./create-form.component.scss']
 })
 export class CreateFormComponent implements OnInit {
-validateForm!: FormGroup;
+  
+  validateForm!: FormGroup;
+  
+  @Input()
+  isEditMode: boolean = false;
+  @Input()
+  id?: string;
 
-  submitForm(): void {
-    console.log(this.validateForm.controls.title.value);
-    console.log(this.validateForm.controls.oldurl.value);
-    console.log(this.validateForm.controls.newurl.value);
-    for (const i in this.validateForm.controls) {
-      this.validateForm.controls[i].markAsDirty();
-      this.validateForm.controls[i].updateValueAndValidity();
-    }
+  @Output()
+  backClick = new EventEmitter<string>();
+
+  constructor(
+    private fb: FormBuilder,
+    private shortUrlService: ShorturlService,
+  ) {}
+  
+  async submitForm() {
+    if (formHasError(this.validateForm)) return;
+
+    const {oldurl: realUrl, newurl: shortUrl} = this.validateForm.value;
+
+      if (this.isEditMode && this.id != null) {
+        const result = await this.shortUrlService.updateUrl({
+          realUrl, oldShortUrl: this.id, newShortUrl: shortUrl,
+        })
+        console.log("update result", result);
+      } else {
+        const result = await this.shortUrlService.createUrl({
+          realUrl, shortUrl
+        })
+        console.log('create result', result);
+      }
+      await this.shortUrlService.getMyUrls();
   }
 
-  constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
-      title: [null, [Validators.required]],
+      // title: [null, [Validators.required]],
       oldurl: [null, [Validators.required]],
-      newurl: [null, [Validators.required]],
+      newurl: [null /*[Validators.required]*/],
       remember: [true]
     });
+
+    // trigger fetch
+    this.ngOnChanges();
+  }
+  
+  onBackClick() {
+    this.backClick.emit('');
+  }
+
+  ngOnChanges() {
+    // prevent change trigger first before form is initialized
+    if (!this.validateForm) return;
+
+    if (this.isEditMode && this.id) {
+      this.shortUrlService.getUrl(this.id).then(url => {
+        this.validateForm.controls['oldurl'].setValue(url.realUrl);
+        this.validateForm.controls['newurl'].setValue(url.shortUrl);
+      })    
+    } else {
+      this.validateForm.controls['oldurl'].setValue("");
+      this.validateForm.controls['newurl'].setValue("");
+    }
   }
 }
