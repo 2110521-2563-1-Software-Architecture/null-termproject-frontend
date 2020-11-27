@@ -8,19 +8,22 @@
             </nz-input-group>
         </nz-form-control>
     </nz-form-item> -->
+    
     <nz-form-item>
-        <nz-form-control nzErrorTip="Please input your Old URL!">
-            <nz-input-group >
-            <input type="text" nz-input formControlName="oldurl" placeholder="Old URL" />
-            </nz-input-group>
-        </nz-form-control>
-    </nz-form-item>
-        <nz-form-item>
-        <nz-form-control nzErrorTip="Please input your New URL!">
+        <nz-form-label [nzSpan]="6" nzFor="newurl"> shortened url, or leave blank for auto generated </nz-form-label>
+        <nz-form-control>
             <nz-input-group >
             <input type="text" nz-input formControlName="newurl" placeholder="New URL (smallurl/______)" />
             </nz-input-group>
         </nz-form-control>
     </nz-form-item>
-    <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">CREATE !</button>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzFor="oldurl"> target URL</nz-form-label>
+        <nz-form-control nzErrorTip="Ensure that you URL is valid URL (starts with http:// or https://)">
+            <nz-input-group >
+            <input type="text" nz-input formControlName="oldurl" placeholder="Old URL" />
+            </nz-input-group>
+        </nz-form-control>
+    </nz-form-item>
+    <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'"> {{ isEditMode ? "EDIT" : "CREATE"}}</button>
 </form>

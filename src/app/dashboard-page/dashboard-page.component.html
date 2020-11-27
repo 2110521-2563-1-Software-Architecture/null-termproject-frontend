@@ -1,10 +1,10 @@
 <!-- <p>dashboard-page works!</p> -->
 <div nz-row [className]="'dashboardContainer'">
-    <div nz-col nzSpan="6" [className]="'dashboardLeft'">
+    <div nz-col nzSpan="12" [className]="'dashboardLeft'">
         <app-create-form [isEditMode]="isEditMode" [id]="editId" (backClick)="onLinkListClick('')"></app-create-form>
         <!-- <button nz-button nzType="primary" nzBlock (click)="showCreateForm()">CREATE A NEW LINK</button> -->
     </div>
-    <div nz-col nzSpan="18" [className]="'dashboardRight'">
+    <div nz-col nzSpan="12" [className]="'dashboardRight'">
         <app-link-list (linkClick)="onLinkListClick($event)"></app-link-list>
         <!-- <app-create-form></app-create-form> -->
     </div>

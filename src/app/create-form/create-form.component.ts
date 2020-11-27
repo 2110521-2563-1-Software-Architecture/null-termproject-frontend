@@ -55,10 +55,12 @@ export class CreateFormComponent implements OnInit {
   ngOnInit(): void {
     this.validateForm = this.fb.group({
       // title: [null, [Validators.required]],
-      oldurl: [null, [Validators.required]],
-      newurl: [null /*[Validators.required]*/],
+      // REGEX from: https://stackoverflow.com/questions/3809401/what-is-a-good-regular-expression-to-match-a-url
+      oldurl: [null, [Validators.required, Validators.pattern(/^(https?:)(\/\/([^/?#]*))([^?#]*)(\?([^#]*))?(#(.*))?$/)]],
+      newurl: [null],
       remember: [true]
     });
+    
 
     // trigger fetch
     this.ngOnChanges();
@@ -72,7 +74,10 @@ export class CreateFormComponent implements OnInit {
     // prevent change trigger first before form is initialized
     if (!this.validateForm) return;
 
+
+    
     if (this.isEditMode && this.id) {
+      this.validateForm.controls['newurl'].disable();
       this.shortUrlService.getUrl(this.id).then(url => {
         this.validateForm.controls['oldurl'].setValue(url.realUrl);
         this.validateForm.controls['newurl'].setValue(url.shortUrl);

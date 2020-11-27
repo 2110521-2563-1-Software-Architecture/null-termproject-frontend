@@ -1,7 +1,14 @@
 <div *ngFor="let url of myUrls" div nz-col nzSpan="24" [className]="'itemBox'"> 
-    <h3> {{ url.shortUrl }} </h3>
-    <p (click)="onLinkClick(url.shortUrl)" class="hover-link"> Edit this </p>
-    <p [className]="'greyTxt'"> RealUrl: {{url.realUrl}}</p>
-    <p [className]="'blueTxt'"> NewUrl: {{API_URL}}/link/{{url.shortUrl}}</p>
+    <div>
+        <span> {{ url.shortUrl }} </span> -> <span [className]="'blueTxt'"> {{url.realUrl}}</span>
+    </div>
+    <div>
+        <span (click)="onLinkClick(url.shortUrl)" class="hover-link"> Edit this </span>
+        <span (click)="handleDelete(url.shortUrl)" class="hover-link redTxt"> Delete this </span>
+    </div>
+    <div>
+        <span [className]="'greyTxt'"> {{API_URL}}/link/{{url.shortUrl}}</span>
+        <span (click)="copyToClipboard(API_URL + '/link/' + url.shortUrl)" class="hover-link blueTxt"> Copy to clipboard </span>
+    </div>
 </div>
 

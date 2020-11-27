@@ -51,4 +51,8 @@ export class ShorturlService {
     this.myUrls.next(data as ShortUrl[]);
     return data as ShortUrl[];
   }
+
+  async deleteUrl(id: string): Promise<void> {
+    await this.httpClient.delete(`${API_URL}/${BASE_URL}/${id}`, {withCredentials: true}).toPromise();
+  }
 }
